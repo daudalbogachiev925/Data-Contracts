@@ -1,0 +1,29 @@
+name: customers
+version: 1.0.0
+owner: data-team
+description: Основная таблица клиентов
+sla_freshness_hours: 6
+sla_availability: 0.999
+consumers: [dwh.fact_sales, ml.churn_model]
+tags: [core, pii]
+fields:
+  - name: customer_id
+    type: int
+    required: true
+    description: ID клиента
+  - name: email
+    type: string
+    required: true
+    pii: true
+  - name: age
+    type: int
+    required: false
+    min_value: 18
+    max_value: 100
+  - name: status
+    type: string
+    required: true
+    enum: [active, inactive, blocked]
+  - name: created_at
+    type: datetime
+    required: true
