@@ -1,0 +1,26 @@
+name: orders
+version: 2.1.0
+owner: commerce-team
+description: Заказы клиентов
+sla_freshness_hours: 1
+sla_availability: 0.999
+consumers: [dwh.fact_sales]
+tags: [core]
+fields:
+  - name: order_id
+    type: int
+    required: true
+  - name: customer_id
+    type: int
+    required: true
+  - name: amount
+    type: float
+    required: true
+    min_value: 0
+  - name: currency
+    type: string
+    required: true
+    enum: [RUB, USD, EUR]
+  - name: created_at
+    type: datetime
+    required: true
